@@ -2,7 +2,7 @@ import React from 'react'
 import { global } from 'styled-jsx/css'
 
 interface DayComponentProps {
-  temp: Number,
+  temp: number,
   day: string
 }
 
@@ -21,7 +21,7 @@ function DayComponent(props: DayComponentProps) {
 
   const {temp, day}=props
   
-  const formatTemp:Number= Math.floor(temp/10) *10;
+  const formatTemp:number= Math.floor(temp/10) *10;
   
   const tempBG=bgColors[formatTemp] + ' flex-grow-0'
   console.log(day, temp, formatTemp)
