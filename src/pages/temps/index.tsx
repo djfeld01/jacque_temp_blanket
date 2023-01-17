@@ -2,12 +2,12 @@ import React from 'react'
 import DayComponent from '@/components/DayComponent'
 
 
-function Temps({data}) {
+function Temps({data}:any) {
   const {days}=data
   const reversedDays=days.reverse();
 
   return(
-   reversedDays.map((day,index)=>(<DayComponent temp={day.tempmax} day={day.datetime} key={index}/>
+   reversedDays.map((day:any,index:number)=>(<DayComponent temp={day.tempmax} day={day.datetime} key={index}/>
    )))
   
 
