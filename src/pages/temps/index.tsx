@@ -6,11 +6,11 @@ import {
     QueryClient,
     QueryClientProvider 
     } from '@tanstack/react-query'
-import GetLocalData from '@/components/DataComponent'
 import DayComponent from '@/components/DayComponent'
 import { updateDefaultClause } from 'typescript'
 
     interface dailyWeatherData {
+        findIndex(arg0: (e: any) => boolean): unknown
         date: string, 
         maxTemp: number,
         minTemp: number, 
@@ -21,9 +21,6 @@ import { updateDefaultClause } from 'typescript'
         hasKnitted: boolean
       }
       
-      interface tempsData {
-        dayData: dailyWeatherData[]
-      }
 
     export default function Index(){
 
@@ -40,10 +37,10 @@ import { updateDefaultClause } from 'typescript'
       setIsLoading (false);
     }
 
-    function combineData(localData: tempsData, apiData:object){
+    function combineData(localData: Array<dailyWeatherData>, apiData:any){
       const {days:newDays}=apiData;
       //console.log(newDays)
-      const reducedDays=localData.reduce((newArray, current)=>{
+      const reducedDays=localData.reduce((newArray: Array<dailyWeatherData>, current: Array<dailyWeatherData>)=>{
         const indexFromNewDays=newDays.findIndex(e=> e.datetime===current.date)
         if (indexFromNewDays>=0){
           const newDayObject= {
@@ -75,7 +72,7 @@ import { updateDefaultClause } from 'typescript'
         }
         return newArray
       },[])
-      const finalData= [...reducedDays, ...reducedNewDays].sort((a,b)=>{
+      const finalData: Array<dailyWeatherData>= [...reducedDays, ...reducedNewDays].sort((a,b)=>{
         if (a.date < b.date){
           return 1
         }
