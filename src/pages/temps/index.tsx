@@ -31,7 +31,7 @@ import { updateDefaultClause } from 'typescript'
     function buildData(data:any){
       
       const builtData=data.days.map((day:any)=>{
-        return {date: day.datetime, maxTemp: day.tempmax, minTemp: day.tempmin, hasKnitted: true, sunrise: day.sunrise, sunset: day.sunset}
+        return {date: day.datetime, maxTemp: day.tempmax, minTemp: day.tempmin, hasKnitted: false, sunrise: day.sunrise, sunset: day.sunset}
       }).reverse();
       localStorage.setItem ('localWeather', JSON.stringify (builtData))
       setData(builtData)
