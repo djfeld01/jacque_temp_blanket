@@ -34,6 +34,7 @@ import { updateDefaultClause } from 'typescript'
         return {date: day.datetime, maxTemp: day.tempmax, minTemp: day.tempmin, hasKnitted: true, sunrise: day.sunrise, sunset: day.sunset}
       }).reverse();
       localStorage.setItem ('localWeather', JSON.stringify (builtData))
+      setData(builtData)
       setIsLoading (false);
     }
 
@@ -99,16 +100,17 @@ import { updateDefaultClause } from 'typescript'
 
     useEffect(()=>{
      
+      const today=Temporal.Now.plainDate('iso8601').toString();
       if (localData[0]!== 'initialValue'){
         if (localData[0]==='emptyLocal'){ 
-          fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/45140/2023-01-01/2023-01-26?unitGroup=us&include=days&key=JNR4L23H3DBWFRKM9Q4GSPCAJ&contentType=json')
+          fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/45140/2023-01-01/${today}?unitGroup=us&include=days&key=JNR4L23H3DBWFRKM9Q4GSPCAJ&contentType=json`)
           .then((resp)=>resp.json())
           .then((apiData)=>{
             buildData(apiData)
           })
         }
         else {
-          const today=Temporal.Now.plainDate('iso8601').toString();
+
           const startDate= Temporal.PlainDate.from(localData[0].date)
           const stringStartDate= startDate.subtract({days:1}).toString();
           console.log(stringStartDate, today)
