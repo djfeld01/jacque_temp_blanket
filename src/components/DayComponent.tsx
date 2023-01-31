@@ -37,7 +37,7 @@ function DayComponent(props: DayComponentProps) {
 
 
   return (
-    <div className={tempBG + ' flex flex-row'}>
+    <div className={tempBG + ' flex flex-row rounded-lg items-center p-1 my-1'}>
        
 
         <div className='mx-3 flex-auto'>{formattedDate}</div>
