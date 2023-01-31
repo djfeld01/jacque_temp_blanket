@@ -7,6 +7,8 @@ import {
     QueryClientProvider 
     } from '@tanstack/react-query'
 import DayComponent from '@/components/DayComponent'
+import MenuBar from '@/components/MenuBar'
+import { Menu } from '@headlessui/react'
 
 
 
@@ -134,13 +136,12 @@ import DayComponent from '@/components/DayComponent'
 
     return (
       <div>
-        <div className='grid h-screen place-items-center'>
-          
-            
-        </div>
-        {data.map((day, index)=>(
-          <DayComponent temp={day.maxTemp} day={day.date} key={index} index={index} hasKnitted={day.hasKnitted} updateData={updateData}/>
+        <MenuBar />
+        <div className='relative'>        
+          {data.map((day, index)=>(
+            <DayComponent temp={day.maxTemp} day={day.date} key={index} index={index} hasKnitted={day.hasKnitted} updateData={updateData}/>
         ))}
+        </div>
       </div>
 
     )}
