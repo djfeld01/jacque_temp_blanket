@@ -30,6 +30,7 @@ function DayComponent(props: DayComponentProps) {
   const formattedDate= Temporal.PlainDate.from(day).toLocaleString('en-US', { calendar: 'gregory', year: 'numeric', month: 'long', day: 'numeric' });
 
   const formatTemp:number= Math.floor(temp/10) *10;
+  const roundedTemp:number= Math.round(temp)
   
   const tempBG:any=bgColors[formatTemp]
   
@@ -41,7 +42,7 @@ function DayComponent(props: DayComponentProps) {
        
 
         <div className='mx-3 flex-auto'>{formattedDate}</div>
-        <div className='mx-3 flex-auto'>{formatTemp}°</div>
+        <div className='mx-3 flex-auto'>{roundedTemp}°</div>
         <div className='mx-3 flex-auto'>
           <Switch
             checked={checked}
