@@ -1,3 +1,4 @@
+import { Switch } from '@headlessui/react'
 import { Temporal } from '@js-temporal/polyfill'
 import React, { useEffect, useState } from 'react'
 import { global } from 'styled-jsx/css'
@@ -42,18 +43,27 @@ function DayComponent(props: DayComponentProps) {
         <div className='mx-3 flex-auto'>{formattedDate}</div>
         <div className='mx-3 flex-auto'>{formatTemp}°</div>
         <div className='mx-3 flex-auto'>
-          <input type="checkbox"
-          checked={checked}
-          onChange={()=>{
-            updateData(index, !checked)
-            setChecked(!checked)
-            }} 
+          <Switch
+            checked={checked}
+            onChange={()=>{
+              updateData(index, !checked)
+              setChecked(!checked)
+              }} 
+              className={`${
+                checked ? 'bg-slate-800' : 'bg-gray-400'
+              } relative inline-flex h-6 w-11 items-center rounded-full`}
+            >
+           
+            <span
+           className={`${
+            checked ? 'translate-x-6' : 'translate-x-1'
+          } inline-block h-4 w-4 transform rounded-full bg-white transition`}
         />
+        </Switch>
         </div>
     </div>
   )
-   
-
 }
 
 export default DayComponent
+

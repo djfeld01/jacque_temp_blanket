@@ -7,7 +7,8 @@ import {
     QueryClientProvider 
     } from '@tanstack/react-query'
 import DayComponent from '@/components/DayComponent'
-import { updateDefaultClause } from 'typescript'
+
+
 
     interface dailyWeatherData {
         findIndex(arg0: (e: any) => boolean): unknown
@@ -133,6 +134,10 @@ import { updateDefaultClause } from 'typescript'
 
     return (
       <div>
+        <div className='grid h-screen place-items-center'>
+          
+            
+        </div>
         {data.map((day, index)=>(
           <DayComponent temp={day.maxTemp} day={day.date} key={index} index={index} hasKnitted={day.hasKnitted} updateData={updateData}/>
         ))}
