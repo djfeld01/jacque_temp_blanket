@@ -43,7 +43,6 @@ import { Menu } from '@headlessui/react'
 
     function combineData(localData: Array<dailyWeatherData>, apiData:any){
       const {days:newDays}=apiData;
-      //console.log(newDays)
       const reducedDays=localData.reduce((newArray: Array<dailyWeatherData>, current: Array<dailyWeatherData>)=>{
         const indexFromNewDays=newDays.findIndex(e=> e.datetime===current.date)
         if (indexFromNewDays>=0){
@@ -116,7 +115,6 @@ import { Menu } from '@headlessui/react'
 
           const startDate= Temporal.PlainDate.from(localData[0].date)
           const stringStartDate= startDate.subtract({days:1}).toString();
-          console.log(stringStartDate, today)
           fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/45140/${stringStartDate}/${today}?unitGroup=us&include=days&key=JNR4L23H3DBWFRKM9Q4GSPCAJ&contentType=json`)
           .then((resp)=>resp.json()).then((apiData)=>combineData(localData, apiData))
         }

@@ -28,9 +28,9 @@ function DayComponent(props: DayComponentProps) {
 
   const {temp, day, index, hasKnitted, updateData}=props
   const formattedDate= Temporal.PlainDate.from(day).toLocaleString('en-US', { calendar: 'gregory', year: 'numeric', month: 'long', day: 'numeric' });
-
-  const formatTemp:number= Math.floor(temp/10) *10;
   const roundedTemp:number= Math.round(temp)
+  const formatTemp:number= Math.floor(roundedTemp/10) *10;
+  
   
   const tempBG:any=bgColors[formatTemp]
   
