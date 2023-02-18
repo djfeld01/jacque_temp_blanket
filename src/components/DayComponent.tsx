@@ -16,7 +16,8 @@ interface bgColorsType {
 }
 function DayComponent(props: DayComponentProps) {
   const bgColors: any= {
-    '90': 'bg-[#9d0a11] text-gray-300',    '80': 'bg-[#d26230]',
+    '90': 'bg-[#9d0a11] text-gray-300',
+    '80': 'bg-[#d26230]',
     '70': 'bg-[#e4c66d]',
     '60': 'bg-[#e0d9bb]',
     '50': 'bg-[#9ca98e]',

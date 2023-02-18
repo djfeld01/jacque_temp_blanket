@@ -8,7 +8,7 @@ import {
     } from '@tanstack/react-query'
 import DayComponent from '@/components/DayComponent'
 import MenuBar from '@/components/MenuBar'
-import { Menu } from '@headlessui/react'
+import { Menu, Switch } from '@headlessui/react'
 
 
 
@@ -26,7 +26,7 @@ import { Menu } from '@headlessui/react'
       
 
     export default function Index(){
-
+    const [useMinTemp, setUseMinTemp]= useState(false);  
     const [data,setData]=useState([]);
     const [localData,setLocalData]=useState(['initialValue'])
     const [isLoading, setIsLoading]=useState(true)
@@ -61,7 +61,7 @@ import { Menu } from '@headlessui/react'
       },[])
       
       const reducedNewDays=newDays.reduce((newArray, current)=>{
-        const indexFromReducedDays= reducedDays.findIndex(e=>e.date===current.datetime);
+        const indexFromReducedDays: number= reducedDays.findIndex(e=>e.date===current.datetime);
         if (indexFromReducedDays<0){
           const newDayObject={
             date: current.datetime,
@@ -135,9 +135,30 @@ import { Menu } from '@headlessui/react'
     return (
       <div>
         <MenuBar />
+        <div>Use Min Temp</div>
+        <Switch
+            checked={useMinTemp}
+            onChange={()=>{
+              
+              setUseMinTemp(!useMinTemp)
+              
+              
+              console.log("🚀 ~ file: index.tsx:146 ~ Index ~ useMinTemp", useMinTemp)}
+            } 
+              className={`${
+                useMinTemp ? 'bg-slate-800' : 'bg-gray-400'
+              } relative inline-flex h-6 w-11 items-center rounded-full`}
+            >
+           
+            <span
+           className={`${
+            useMinTemp ? 'translate-x-6' : 'translate-x-1'
+          } inline-block h-4 w-4 transform rounded-full bg-white transition`}
+        />
+        </Switch>
         <div className='relative'>        
           {data.map((day, index)=>(
-            <DayComponent temp={day.maxTemp} day={day.date} key={index} index={index} hasKnitted={day.hasKnitted} updateData={updateData}/>
+            <DayComponent temp={useMinTemp ? day.minTemp : day.maxTemp} day={day.date} key={index} index={index} hasKnitted={day.hasKnitted} updateData={updateData}/>
         ))}
         </div>
       </div>
